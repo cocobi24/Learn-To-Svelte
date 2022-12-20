@@ -11,6 +11,7 @@
 	max-width: 30rem;
 	border-radius: 5px;
 	margin: 1rem 0;
+	background: white;
 }
 
 header {
@@ -25,7 +26,7 @@ header {
 	height: 100%;
 }
 
-.thumb-placeholder{
+.thumb-placeholder {
 	background: #ccc;
 }
 
@@ -64,16 +65,16 @@ h2 {
 </style>
 
 <div class="contact-card">
-	<header>
-		<div class="thumb" class:thumb-placeholder="{!userImage}">
-		<img src="{userImage}" alt={userName}/>
-		</div>
-		<div class="user-data">
-		<h1>{userName}</h1>
-		<h2>{jobTitle}</h2>
-		</div>
-	</header>
-	<div class="description">
-		<p>{description}</p>
+<header>
+	<div class="thumb" class:thumb-placeholder="{!userImage}">
+	<img src={userImage} alt={userName} />
 	</div>
+	<div class="user-data">
+	<h1>{userName}</h1>
+	<h2>{jobTitle}</h2>
+	</div>
+</header>
+<div class="description">
+	<p>{description}</p>
+</div>
 </div>
