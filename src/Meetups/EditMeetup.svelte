@@ -3,7 +3,7 @@
   import TextInput from "../UI/TextInput.svelte";
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
-  import { isEmpty, isValidEmail } from '../helpers/validation.js';
+  import { isEmpty, isValidEmail } from "../helpers/validation.js";
 
   let title = "";
   let subtitle = "";
@@ -20,12 +20,13 @@
   $: descriptionValid = !isEmpty(description);
   $: imageUrlValid = !isEmpty(imageUrl);
   $: emailValid = isValidEmail(email);
-  $: formIsValid = titleValid 
-                && subtitleValid 
-                && addressValid 
-                && descriptionValid 
-                && imageUrlValid 
-                && emailValid
+  $: formIsValid =
+    titleValid &&
+    subtitleValid &&
+    addressValid &&
+    descriptionValid &&
+    imageUrlValid &&
+    emailValid;
 
   function submitForm() {
     dispatch("save", {
@@ -39,7 +40,7 @@
   }
 
   function cancel() {
-      dispatch('cancel');
+    dispatch("cancel");
   }
 </script>
 

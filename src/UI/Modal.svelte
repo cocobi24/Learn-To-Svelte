@@ -1,14 +1,14 @@
 <script>
-    import { createEventDispatcher } from "svelte";
-    import Button from "./Button.svelte";
-  
-    export let title;
-  
-    const dispatch = createEventDispatcher();
-  
-    function closeModal() {
-      dispatch("cancel");
-    }
+  import { createEventDispatcher } from "svelte";
+  import Button from "./Button.svelte";
+
+  export let title;
+
+  const dispatch = createEventDispatcher();
+
+  function closeModal() {
+    dispatch("cancel");
+  }
 </script>
 
 <style>
