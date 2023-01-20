@@ -1,32 +1,42 @@
 <script>
-  import meetups from './Meetups/meetups-store.js';
+  import meetups from "./Meetups/meetups-store.js";
   import Header from "./UI/Header.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import TextInput from "./UI/TextInput.svelte";
   import Button from "./UI/Button.svelte";
   import EditMeetup from "./Meetups/EditMeetup.svelte";
-  import MeetupDetail from './Meetups/MeetupDetail.svelte';
+  import MeetupDetail from "./Meetups/MeetupDetail.svelte";
+
+  // let meetups = ;
 
   let editMode;
-  let page = 'overview';
-  let pageDate = {};
+  let editedId;
+  let page = "overview";
+  let pageData = {};
 
-  function addMeetup(event) {
+  function savedMeetup(event) {
     editMode = null;
+    editedId = null;
   }
 
   function cancelEdit() {
     editMode = null;
+    editedId = null;
   }
 
-  function showdetails(event) {
-    page = 'details';
-    pageDate.id = event.detail;
+  function showDetails(event) {
+    page = "details";
+    pageData.id = event.detail;
   }
 
   function closeDetails() {
-    page = 'overview';
-    pageDate = {};
+    page = "overview";
+    pageData = {};
+  }
+
+  function startEdit(event) {
+    editMode = "edit";
+    editedId = event.detail;
   }
 </script>
 
@@ -45,14 +55,16 @@
 <main>
   {#if page === 'overview'}
     <div class="meetup-controls">
-      <Button on:click={() => (editMode = 'add')}>New Meetup</Button>
+      <Button on:click={() => (editMode = 'edit')}>New Meetup</Button>
     </div>
-    {#if editMode === 'add'}
-      <EditMeetup on:save={addMeetup} on:cancel={cancelEdit} />
+    {#if editMode === 'edit'}
+      <EditMeetup id={editedId} on:save={savedMeetup} on:cancel={cancelEdit} />
     {/if}
-    <MeetupGrid meetups={$meetups} on:showdetails={showdetails} />
+    <MeetupGrid
+      meetups={$meetups}
+      on:showdetails={showDetails}
+      on:edit={startEdit} />
   {:else}
-  <MeetupDetail id={pageDate.id} on:close={closeDetails} />
+    <MeetupDetail id={pageData.id} on:close={closeDetails} />
   {/if}
-
 </main>
