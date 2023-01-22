@@ -31,8 +31,6 @@ const customMeetupsStore = {
   addMeetup: (meetupData) => {
     const newMeetup = {
       ...meetupData,
-      id: Math.random().toString(),
-      ifFavorite: false
     };
     meetups.update(items => {
       return [newMeetup, ...items];
