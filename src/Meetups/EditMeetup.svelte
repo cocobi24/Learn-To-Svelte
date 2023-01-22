@@ -57,7 +57,20 @@
 
     // meetups.push(newMeetup); // DOES NOT WORK!
     if (id) {
-      meetups.updateMeetup(id, meetupData);
+      fetch(`https://svelte-meetup-20dbb-default-rtdb.firebaseio.com/meetups/${id}.json`,{
+        method: 'PATCH',
+        body: JSON.stringify(meetupData),
+        headers: { 'Content-type': 'application/json' }
+      })
+      .then(res => {
+        if (!res.ok){
+          throw new Error('An error occurred, please try again!');
+        }
+        meetups.updateMeetup(id, meetupData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     } else {
       fetch('https://svelte-meetup-20dbb-default-rtdb.firebaseio.com/meetups.json',{
         method: 'POST',
