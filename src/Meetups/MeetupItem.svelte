@@ -20,16 +20,16 @@
         method: 'PATCH',
         body: JSON.stringify({isFavorite: !isFav}),
         headers: { 'Content-type': 'application/json' }
-      })
-      .then(res => {
-        if (!res.ok){
-          throw new Error('An error occurred, please try again!');
-        }
-        meetups.toggleFavorite(id);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    })
+    .then(res => {
+      if (!res.ok){
+        throw new Error('An error occurred, please try again!');
+      }
+      meetups.toggleFavorite(id);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 </script>
 
