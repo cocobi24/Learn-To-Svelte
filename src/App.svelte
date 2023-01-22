@@ -7,12 +7,31 @@
   import EditMeetup from "./Meetups/EditMeetup.svelte";
   import MeetupDetail from "./Meetups/MeetupDetail.svelte";
 
-  // let meetups = ;
-
   let editMode;
   let editedId;
   let page = "overview";
   let pageData = {};
+
+  fetch('https://svelte-meetup-20dbb-default-rtdb.firebaseio.com/meetups.json')
+  .then(res => {
+    if (!res.ok){
+      throw new Error('Fetching meetups failed, please try again later!');
+    }
+    return res.json();
+  })
+  .then(data => {
+    const loadedMeetups = [];
+    for (const key in data){
+      loadedMeetups.push({
+        ...data[key],
+        id: key
+      });
+    }
+    meetups.setMeetups(loadedMeetups);
+  })
+  .catch(err => {
+    console.log(err)
+  })
 
   function savedMeetup(event) {
     editMode = null;

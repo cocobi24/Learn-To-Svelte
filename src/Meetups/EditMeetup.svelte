@@ -59,7 +59,7 @@
     if (id) {
       meetups.updateMeetup(id, meetupData);
     } else {
-      fetch("https://svelte-meetup-20dbb-default-rtdb.firebaseio.com/meetups.json",{
+      fetch('https://svelte-meetup-20dbb-default-rtdb.firebaseio.com/meetups.json',{
         method: 'POST',
         body: JSON.stringify({...meetupData, isFavorite: false}),
         headers: { 'Content-type': 'application/json' }
